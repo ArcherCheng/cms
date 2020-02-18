@@ -14,13 +14,17 @@ export class CoreService {
     private service: AppService,
     private storageService: StorageService,
     public translate: TranslateService
-  ) {}
+  ) {
+    console.log('CoreService.constructor');
+  }
 
   nextHamburger(next: string) {
+    console.log('CoreService.nextHamburger', next);
     this.hamburgerSubject.next(next);
   }
 
   isHamburgerIn(): Observable<string> {
+    console.log('CoreService.isHamburgerIn');
     if (!!this.hamburgerSubject) {
       return this.hamburgerSubject.asObservable();
     }
@@ -28,14 +32,17 @@ export class CoreService {
   }
 
   useLanguage(lang: string) {
+    console.log('CoreService.useLanguage', lang);
     return this.translate.use(lang);
   }
 
   getNowLang() {
+    console.log('CoreService.getNowLang');
     return this.storageService.getLangStorage();
   }
 
   logout(): void {
+    console.log('CoreService.logout');
     this.service.backLogin();
   }
 }

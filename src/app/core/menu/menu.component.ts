@@ -7,7 +7,7 @@ import { DataService } from 'src/app/service/data.service';
 import { UserService } from 'src/app/service/user.service';
 import { IPower, IHold } from 'src/app/model/data';
 import { IData } from 'src/app/model/base';
-import { ITabBase, ITabMain } from 'src/app/model/tabs';
+import { ITabBase, ITabMain } from 'src/app/modules/tab/tabs';
 import { TabService } from 'src/app/modules/tab/tab.service';
 @Component({
   selector: 'app-menu',
@@ -27,20 +27,24 @@ export class MenuComponent implements OnInit {
     private tabService: TabService,
     private dataService: DataService,
     private userService: UserService
-  ) {}
+  ) {
+    console.log('MenuComponent.constructor');
+  }
 
   ngOnInit() {
-    this.breakpointObserver.observe('(max-width: 1199px)').subscribe(r => {
-      this.isDevice = r.matches ? 'mb' : 'pc';
-      // this.filterMenu();
+    console.log('MenuComponent.ngOnInit');
+    this.breakpointObserver.observe('(max-width: 1199px)').subscribe(res => {
+      this.isDevice = res.matches ? 'mb' : 'pc';
+      this.filterMenu();
     });
     this.setMenu();
   }
 
   setMenu() {
+    console.log('MenuComponent.setMenu');
     this.dataService.getData('powers').subscribe((data: IData) => {
       if (!!data && !!data.res) {
-        console.log(data);
+        console.log('MenuComponent.setMenu', data);
         const powers = data.res as IPower[];
         powers.forEach((power: IPower) => {
           this.userService.getUser().holds.forEach((hold: IHold) => {
@@ -51,17 +55,18 @@ export class MenuComponent implements OnInit {
                 check: false
               } as IMenu;
               this.menu.push(obj);
-              console.log(obj);
+              // console.log(obj);
             }
           });
         });
-        console.log(this.menu);
+        console.log('MenuComponent.setMenu', this.menu);
       }
     });
-    // this.filterMenu();
+    this.filterMenu();
   }
 
   filterMenu() {
+    console.log('MenuComponent.filterMenu');
     const index = this.menu
       .map(item => {
         return item.name;
@@ -80,11 +85,13 @@ export class MenuComponent implements OnInit {
   }
 
   toggleMenuInfo(menuInfo: IMenu) {
+    console.log('MenuComponent.toggleMenuInfo', menuInfo);
     menuInfo.check = !menuInfo.check;
     this.setListTab(menuInfo);
   }
 
   setListTab(menuInfo: IMenu) {
+    console.log('MenuComponent.setListTab', menuInfo);
     this.coreService.nextHamburger('next');
     const tab = {
       tag: `${menuInfo.name}_list`,
@@ -98,16 +105,19 @@ export class MenuComponent implements OnInit {
   }
 
   logout() {
+    console.log('MenuComponent.logout');
     this.coreService.logout();
   }
 
   useLanguage($event?) {
+    console.log('MenuComponent.useLanguage');
     if (!!$event) {
       this.coreService.useLanguage($event);
     }
   }
 
   getNowLang() {
+    console.log('MenuComponent.getNowLang');
     return this.coreService.getNowLang();
   }
 }

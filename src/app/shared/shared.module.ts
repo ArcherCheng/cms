@@ -7,6 +7,7 @@ import { DialogModule } from './dialog/dialog.module';
 import { PipeModule } from './pipe/pipe.module';
 import { ValidationModule } from './validation/validation.module';
 import { LoadingModule } from './loading/loading.module';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 @NgModule({
   declarations: [],
@@ -20,6 +21,7 @@ import { LoadingModule } from './loading/loading.module';
     PipeModule,
     ValidationModule,
     LoadingModule,
+    NgxChartsModule
   ],
   exports: [
     CommonModule,
@@ -31,6 +33,7 @@ import { LoadingModule } from './loading/loading.module';
     PipeModule,
     ValidationModule,
     LoadingModule,
+    NgxChartsModule
   ]
 })
 export class SharedModule { }

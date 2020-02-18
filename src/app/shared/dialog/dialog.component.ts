@@ -14,22 +14,25 @@ export class DialogComponent implements OnInit {
   constructor(
     public dialogRef: MatDialogRef<DialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: { errorCode: number }
-  ) { }
+  ) {
+    console.log('DialogComponent.constructor:');
+   }
 
   ngOnInit() {
-    this.dialogRef.keydownEvents().pipe(
-      filter((e: KeyboardEvent) => e.key === 'Enter'),
-      take(1)
-    ).subscribe(() => {
-      this.dialogRef.close();
-    });
+    console.log('DialogComponent.ngOnInit:');
+    // this.dialogRef.keydownEvents().pipe(
+    //   filter((e: KeyboardEvent) => e.key === 'Enter'),
+    //   take(1)
+    // ).subscribe(() => {
+    //   this.dialogRef.close();
+    // });
   }
 
   getMsgName(): string {
+    console.log('DialogComponent.getMsgName:');
     if (!!this.data) {
       const result = this.errorCodeMsg.filter(item => item.code === this.data.errorCode);
-      return !!result.length ? result[0].name : 'err_fail';
-
+      return !!result.length ? result[0].name : 'fail';
     }
   }
 

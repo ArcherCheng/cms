@@ -9,7 +9,7 @@ const routes: Routes = [
   {
     path: 'cms',
     component: CoreComponent,
-    canActivate: [CoreGuard],
+    // canActivate: [CoreGuard],
     children: CmsRouting
   },
   { path: '', redirectTo: 'cms', pathMatch: 'full' }

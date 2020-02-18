@@ -33,22 +33,27 @@ export class UserService {
     ]
   };
 
-  constructor() { }
+  constructor() {
+    console.log('UserService.constructor:');
+   }
 
   setOne(user: IUser) {
+    console.log('UserService.setOne:', user);
     this.uer = Object.assign(this.uer, user);
   }
 
   setToken(token: string) {
+    console.log('UserService.setToken:', token);
     this.uer = Object.assign(this.uer, {Token: token});
   }
 
   getUser() {
-    // console.log(this.uer);
+    console.log('UserService.getUser:');
     return this.uer;
   }
 
   delUser() {
+    console.log('UserService.delUser:');
     this.uer = null;
   }
 }

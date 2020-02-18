@@ -1,17 +1,28 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 
 import { CustomerRoutingModule } from './customer-routing.module';
-import { ListComponent } from './list/list.component';
-import { DetailComponent } from './list/detail/detail.component';
-import { DialogLevelComponent } from './dialog-level/dialog-level.component';
+import { CustomerListComponent } from './list/list.component';
+import { DialogCustomerDetailComponent } from './list/detail/detail.component';
+import { DialogCustomerLevelComponent } from './dialog-level/dialog-level.component';
+import { SharedModule } from 'src/app/shared/shared.module';
+import { SearchModule } from 'src/app/modules/search/search.module';
+import { CustomerComponent } from './customer.component';
 
 
 @NgModule({
-  declarations: [ListComponent, DetailComponent, DialogLevelComponent],
+  declarations: [
+    CustomerComponent,
+    CustomerListComponent,
+    DialogCustomerLevelComponent,
+    DialogCustomerDetailComponent
+  ],
   imports: [
-    CommonModule,
+    SharedModule,
+    SearchModule,
     CustomerRoutingModule
-  ]
+  ],
+  exports: [CustomerComponent],
+  providers: [],
+  entryComponents: [DialogCustomerDetailComponent, DialogCustomerLevelComponent]
 })
 export class CustomerModule { }

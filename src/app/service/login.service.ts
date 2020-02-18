@@ -12,10 +12,12 @@ export class LoginService {
   constructor() { }
 
   login() {
+    console.log('LoginService.login');
     this.loginSubject.next(true);
   }
 
   logout() {
+    console.log('LoginService.logout');
     this.loginSubject.next(false);
   }
 }

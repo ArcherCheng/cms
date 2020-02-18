@@ -3,7 +3,8 @@ import { NG_VALIDATORS, AbstractControl } from '@angular/forms';
 import { ValidationService } from './validation.service';
 
 @Directive({
-  selector: '[appValidation]',
+  // tslint:disable-next-line: directive-selector
+  selector: '[fnValidator]',
   providers: [
     {
       provide: NG_VALIDATORS,

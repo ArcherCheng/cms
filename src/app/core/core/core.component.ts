@@ -7,7 +7,7 @@ import { CoreService } from '../core.service';
 import { UserService } from 'src/app/service/user.service';
 import { TabService } from 'src/app/modules/tab/tab.service';
 import { DataService } from 'src/app/service/data.service';
-import { ITabMain, ITabBase } from 'src/app/model/tabs';
+import { ITabMain, ITabBase } from 'src/app/modules/tab/tabs';
 import { SlideInOutAnimation } from './animations';
 
 @Component({
@@ -32,9 +32,12 @@ export class CoreComponent implements OnInit, OnDestroy {
     private userService: UserService,
     private tabService: TabService,
     protected dataService: DataService
-  ) {}
+  ) {
+    console.log('CoreComponent.constructor');
+  }
 
   ngOnInit() {
+    console.log('CoreComponent.ngOnInit');
     if (!!this.service.isHamburgerIn()) {
       this.subscription = this.service.isHamburgerIn().subscribe(val => {
         if (this.isDevice === 'mb') {
@@ -54,33 +57,39 @@ export class CoreComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
+    console.log('CoreComponent.ngOnDestroy');
     if (!!this.subscription) {
       this.subscription.unsubscribe();
     }
   }
 
   toggle() {
+    console.log('CoreComponent.toggle');
     this.isHamburger = !this.isHamburger;
     this.toggleMenu();
   }
 
   toggleMenu() {
+    console.log('CoreComponent.toggleMenu');
     this.animationState = this.isHamburger ? 'out' : 'in';
   }
 
   useLanguage($event) {
+    console.log('CoreComponent.useLanguage');
     if (!!$event) {
       this.service.useLanguage($event);
     }
   }
 
   getUserAccount(): string {
+    console.log('CoreComponent.getUserAccount');
     if (!!this.userService.getUser() && !!this.userService.getUser().account) {
       return this.userService.getUser().account;
     }
   }
 
   nextUser() {
+    console.log('CoreComponent.nextUser');
     const tab = {
       tag: `user_list`,
       path: `cms/user`
@@ -93,9 +102,11 @@ export class CoreComponent implements OnInit, OnDestroy {
   }
 
   goHome() {
+    console.log('CoreComponent.goHome');
     this.router.navigate(['cms/index/', { tag: '' }], {
       skipLocationChange: true,
       queryParamsHandling: 'merge'
     });
   }
 }
+

@@ -2,9 +2,9 @@ import { Component, OnInit, Input } from '@angular/core';
 import { IFilter, DataService } from 'src/app/service/data.service';
 import { IOrder, IOrderCar } from 'src/app/model/data';
 import { IData } from 'src/app/model/base';
-// import * as _moment from 'moment';
-// import { Moment } from 'moment';
-// const moment = (_moment as any).default ? (_moment as any).default : _moment;
+import * as _moment from 'moment';
+import { Moment } from 'moment';
+const moment = (_moment as any).default ? (_moment as any).default : _moment;
 
 interface IChartData {
   name: string;
@@ -31,7 +31,7 @@ export class RankProductComponent implements OnInit {
   @Input() innerHeight: number;
   rankProducts: IChartData[] = [];
   sumProducts: { [key: number]: number } = {};
-  max = 5;
+  max = 12;
 
   constructor(private dataService: DataService) {}
 
@@ -44,10 +44,10 @@ export class RankProductComponent implements OnInit {
       startDate: null,
       endDate: null
     } as IDateRange;
-    // obj.startDate = moment().startOf('month');
-    // obj.endDate = moment()
-    //   .startOf('month')
-    //   .add(1, 'months');
+    obj.startDate = moment().startOf('month').add(-10, 'month');
+    obj.endDate = moment()
+      .startOf('month')
+      .add(1, 'months');
     return obj;
   }
 

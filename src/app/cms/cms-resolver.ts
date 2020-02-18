@@ -4,7 +4,7 @@ import { Observable } from 'rxjs/internal/Observable';
 import { map, take } from 'rxjs/operators';
 import { LoggerService } from '../service/logger.service';
 import { TabService } from '../modules/tab/tab.service';
-import { ITabBase } from '../model/tabs';
+import { ITabBase } from '../modules/tab/tabs';
 
 @Injectable()
 export class CmsResolver implements Resolve<Observable<ITabBase>> {

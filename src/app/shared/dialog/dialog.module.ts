@@ -4,6 +4,7 @@ import { DialogComponent } from './dialog.component';
 import { MatInputModule, MatDialogModule, MatIconModule } from '@angular/material';
 import { TranslateModule } from '@ngx-translate/core';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { ValidationModule } from '../validation/validation.module';
 
 @NgModule({
   declarations: [DialogComponent],
@@ -14,7 +15,8 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
     TranslateModule,
     MatIconModule,
     MatDialogModule,
-    MatInputModule
+    MatInputModule,
+    ValidationModule
   ],
   exports: [ DialogComponent ],
   entryComponents: [ DialogComponent ]

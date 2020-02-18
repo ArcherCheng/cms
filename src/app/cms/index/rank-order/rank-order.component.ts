@@ -25,7 +25,7 @@ export class RankOrderComponent implements OnInit {
   @Input() innerWidth: number;
   @Input() innerHeight: number;
   rankOrders: IChartData[] = [];
-  max = 3;
+  max = 12;
 
   constructor(private dataService: DataService) { }
 

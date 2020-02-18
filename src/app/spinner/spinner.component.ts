@@ -13,14 +13,18 @@ export class SpinnerComponent implements OnInit, OnDestroy {
   subscription: Subscription;
 
   constructor(private spinnerService: SpinnerService) {
+    console.log('SpinnerComponent.constructor:');
     this.subscription = this.spinnerService.spinnerState.subscribe((state: SpinnerState) => {
       this.visible = state.show;
     });
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    console.log('SpinnerComponent.ngOnInit:');
+  }
 
   ngOnDestroy() {
+    console.log('SpinnerComponent.ngOnDestroy:');
     if (!!this.subscription) {
       this.subscription.unsubscribe();
     }

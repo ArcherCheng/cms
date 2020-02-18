@@ -8,6 +8,7 @@ import { PreviewComponent } from './preview/preview.component';
   declarations: [PreviewComponent],
   imports: [
     CommonModule
-  ]
+  ],
+  exports: [PreviewComponent]
 })
 export class PreviewModule { }

@@ -80,7 +80,7 @@
                         style="margin-left:2px;"
                       ></mat-icon>
                     </div>
-                    <app-validation-messages [control]="inputVal"></app-validation-messages>
+                    <app-validation-message [control]="inputVal"></app-validation-message>
                   </div>
                 </td>
 
@@ -93,7 +93,7 @@
                     *ngIf="!(clickToggle.atrId == r.id && clickToggle.atrTagSel == 'change-status')"
                     [attr.change-status]="r.id"
                   >
-                    <!-- {{ r.status | pipetag: ACCOUNTSTATUS | translate }}  -->
+                    {{ r.status | pipetag: ACCOUNTSTATUS | translate }}
                   </span>
                   <div
                     *ngIf="clickToggle.atrId == r.id && clickToggle.atrTagSel == 'change-status'"
@@ -121,7 +121,7 @@
                         style="margin-left:2px;"
                       ></mat-icon>
                     </div>
-                    <app-validation-messages [control]="inputVal"></app-validation-messages>
+                    <app-validation-message [control]="inputVal"></app-validation-message>
                   </div>
                 </td>
                 <td>
@@ -164,8 +164,8 @@
       [length]="tab.pageObj.length"
       [pageSize]="tab.pageObj.pageSize"
       (page)="onSetPage($event)"
-    >
-    <!-- [pageSizeOptions]="PAGESIZEOPTIONS" -->
+      [pageSizeOptions]="PAGESIZEOPTIONS"
+      >
   </mat-paginator>
   </div>
 </div>

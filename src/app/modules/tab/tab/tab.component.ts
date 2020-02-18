@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ITabBase, ITabMain } from 'src/app/model/tabs';
+import { ITabBase, ITabMain } from 'src/app/modules/tab/tabs';
 import { Subscription } from 'rxjs';
 import { StorageService } from 'src/app/service/storage.service';
 import { TabService } from '../tab.service';

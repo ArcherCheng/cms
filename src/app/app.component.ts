@@ -36,6 +36,7 @@ export class AppComponent implements OnInit {
     private loginService: LoginService,
     private userService: UserService
   ) {
+    console.log('appComponent.constructor:');
     ICONS.forEach(val => {
       this.matIconRegistry.addSvgIcon(
         val.tab,
@@ -52,8 +53,9 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log('appComponent.ngOnInit:');
     if (!this.userService.getUser().token) {
-        console.log(this.router.events);
+        console.log('appComponent.ngOnInit:', this.router.events);
         this.router.events.pipe(
           filter(event => event instanceof RoutesRecognized),
           take(1)
@@ -61,18 +63,20 @@ export class AppComponent implements OnInit {
         .subscribe((e: any) => {
           // tslint:disable-next-line: no-string-literal
           if (!!e.state.root.queryParams['token']) {
-            console.log(e);
+            console.log('appComponent.ngOnInit:', e);
             // tslint:disable-next-line: no-string-literal
             this.setToken(e.state.root.queryParams['token']);
           } else {
-            console.log(e);
+            console.log('appComponent.ngOnInit:', e);
             this.dialogOpen(1); // reconnect
           }
         });
     }
+    this.setLogin(this.userService.getUser().account);
   }
 
   setToken(token: string) {
+    console.log('appComponent.setToken:', token);
     if (!!token) {
       this.userService.setToken(token);
       this.spinnerService.load();
@@ -90,6 +94,7 @@ export class AppComponent implements OnInit {
   }
 
   dialogOpen(errorCode) {
+    console.log('appComponent.dialogOpen:', errorCode);
     const dialogRef = this.dialog.open(DialogComponent, {
       width: '550px',
       data: {
@@ -102,6 +107,7 @@ export class AppComponent implements OnInit {
   }
 
   setLogin(account: string) {
+    console.log('appComponent.setLogin:', account);
     this.storageService.setKey(account);
     this.loginService.login();
   }

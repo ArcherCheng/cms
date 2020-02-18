@@ -1,11 +1,12 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'tag'
+  name: 'pipetag'
 })
 export class TagPipe implements PipeTransform {
+  constructor() {}
 
-  transform(value: any, ...args: any[]): any {
+  transform(value: number | string, args: any[]): any {
     if (!args.length) {
       if (typeof value === 'number') {
         return value.toString();

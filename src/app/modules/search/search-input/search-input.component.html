@@ -1,0 +1,30 @@
+<div class="item-wrapper search">
+  <div>
+    <span>{{ label | translate }}</span>
+  </div>
+  <div *ngIf="!isNumber">
+    <input
+      type="text"
+      [(ngModel)]="searchValue"
+      [placeholder]="textHolder | translate"
+      (change)="getSearch()" />
+    <mat-icon *ngIf="searchValue != ''" (click)="getSearch(true)" class="del-search">
+      cancel
+    </mat-icon>
+  </div>
+  <div *ngIf="isNumber">
+    <input
+      type="text"
+      name="idSel"
+      #idSel="ngModel"
+      [(ngModel)]="searchValue"
+      [placeholder]="textHolder | translate"
+      (change)="validSearch(idSel)"
+      [fnValidator]="'numberOnlyValidator'"
+    />
+    <mat-icon *ngIf="searchValue != ''" (click)="getSearch(true)" class="del-search"
+      >cancel</mat-icon
+    >
+    <app-validation-message [control]="idSel"></app-validation-message>
+  </div>
+</div>

@@ -9,7 +9,11 @@ import { RankProductComponent } from './rank-product/rank-product.component';
 
 
 @NgModule({
-  declarations: [IndexComponent, RankOrderComponent, RankProductComponent],
+  declarations: [
+    IndexComponent,
+    RankOrderComponent,
+    RankProductComponent
+  ],
   imports: [
     SharedModule,
     IndexRoutingModule

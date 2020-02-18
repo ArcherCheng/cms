@@ -1,1 +1,82 @@
-<p>detail works!</p>
+<form [formGroup]="form">
+  <div mat-dialog-title class="flex center">
+    <mat-icon svgIcon="alert"></mat-icon>
+    <span *ngIf="!data.product"> {{ "alert_product_insert" | translate }} </span>
+    <span *ngIf="!!data.product"> {{ "alert_product_update" | translate }} </span>
+  </div>
+  <div mat-dialog-content>
+    <div class="item-wrapper two pink">
+      <div>
+        <span> *{{ "name" | translate }} </span>
+      </div>
+      <div>
+        <input
+          type="text"
+          formControlName="name"
+          [placeholder]="'import_name' | translate"
+          required
+        />
+      </div>
+      <app-validation-message [control]="form.controls.name"></app-validation-message>
+    </div>
+    <div class="item-wrapper two pink">
+      <div>
+        <span> *{{ "product_price" | translate }} </span>
+      </div>
+      <div>
+        <input
+          type="text"
+          formControlName="price"
+          [placeholder]="'import_coin' | translate"
+          required
+        />
+      </div>
+      <app-validation-message [control]="form.controls.price"></app-validation-message>
+    </div>
+
+    <div class="item-wrapper two pink">
+      <div>
+        <span>*{{ "status" | translate }}</span>
+      </div>
+      <div>
+        <select name="se_status" id="se_status" formControlName="status">
+          <option value="" disabled>{{ "select" | translate }}</option>
+          <option *ngFor="let status of PRODUCTSTATUS" [value]="status.id">{{
+            status.name | translate
+          }}</option>
+        </select>
+      </div>
+      <app-validation-message [control]="form.controls.status"></app-validation-message>
+    </div>
+
+    <div class="item-wrapper two pink">
+      <div>
+        <span>*{{ "product_type" | translate }}</span>
+      </div>
+      <div>
+        <select name="se_type" id="se_type" formControlName="typeId">
+          <option value="" disabled>{{ "select" | translate }}</option>
+          <option *ngFor="let type of data.types" [value]="type.id">{{
+            type.name | translate
+          }}</option>
+        </select>
+      </div>
+      <app-validation-message [control]="form.controls.typeId"></app-validation-message>
+    </div>
+
+    <app-file-upload [parent]="form"></app-file-upload>
+  </div>
+  <div mat-dialog-actions class="flex center">
+    <button (click)="onNoClick()" class="button pb radius-5" style="margin-right:10px;">
+      {{ "cancel" | translate }}
+    </button>
+    <button
+      (click)="onEnter()"
+      [disabled]="!form.valid"
+      [ngClass]="{ disable: !form.valid }"
+      class="button pb pink radius-5"
+    >
+      {{ "enter" | translate }}
+    </button>
+  </div>
+</form>

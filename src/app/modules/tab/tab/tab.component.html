@@ -3,14 +3,15 @@
     <ng-template ngFor let-tab [ngForOf]="listTabs" let-index="index">
       <mat-tab (click)="selectTab(tab)">
         <ng-template mat-tab-label class="active">
-          <span>{{ getTagName(tab.tag) | translate }}</span>
-          <mat-icon
-            (click)="delTab(index)"
+            <span title="{{tab|json}}">{{ getTagName(tab.tag) | translate }}</span>
+            <mat-icon
             svgIcon="cancel"
             style="margin-left:10px;font-size: small"
-          ></mat-icon>
+            (click)="delTab(index)"
+            ></mat-icon>
         </ng-template>
       </mat-tab>
     </ng-template>
   </mat-tab-group>
-</div> 
+</div>
+<!-- <span style="margin-left: 0.5em;">cancel</span> -->

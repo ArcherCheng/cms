@@ -18,12 +18,15 @@ export interface IFilter {
 export class DataService {
   apiUrl = ApiUrl;
 
-  constructor(private webService: WebService) { }
+  constructor(private webService: WebService) {
+    console.log('DataService.constructor:');
+  }
 
   private setUrl(position: string, filters?: IFilter[], id?: number): string {
-    let url = `${this.apiUrl}/${position}`;
+    console.log('DataService.setUrl:', position, filters, id);
+    let url = `${this.apiUrl}/${position}/`;
     if (!!id) {
-      url += `$id`;
+      url += `${id}`;
     }
     if (!!filters && !!filters.length) {
       url += `?`;
@@ -38,6 +41,7 @@ export class DataService {
   }
 
   connect(token: string): Observable<IData> {
+    console.log('DataService.connect:', token);
     const url = this.setUrl('admins', [
       {key: 'token', val: token},
       {key: '_embed', val: 'holds'}
@@ -64,6 +68,7 @@ export class DataService {
   }
 
   getData(position: string, id?: number, filters?: IFilter[], pageObj?: IPage): Observable<IData> {
+    console.log('DataService.getData:', position, filters, pageObj);
     const url = this.setUrl(position, filters, id);
     return this.webService.getF(url).pipe(
       map((res: IModel[]) => {
@@ -80,6 +85,7 @@ export class DataService {
   }
 
   insertOne(position: string, obj: IModel): Observable<IData> {
+    console.log('DataService.insertOne:', position, obj);
     const url = this.setUrl(position);
     return this.webService.postF(url, obj).pipe(
       map((res: IModel) => {
@@ -93,6 +99,7 @@ export class DataService {
   }
 
   updateOne(position: string, obj: IModel, id: number): Observable<IData> {
+    console.log('DataService.updateOne:', position, obj, id);
     const url = this.setUrl(position, null, id);
     return this.webService.patchF(url, obj).pipe(
       map((res: IModel) => {
@@ -106,6 +113,7 @@ export class DataService {
   }
 
   deleteOne(position: string, id: number): Observable<IData> {
+    console.log('DataService.deleteOne:', position, id);
     const url = this.setUrl(position, null, id);
     return this.webService.delF(url).pipe(
       map((res: IModel) => {
@@ -119,6 +127,7 @@ export class DataService {
   }
 
   checkData(obj: IModel, operatorId: number, isInsert = true): IModel {
+    console.log('DataService.checkData:', obj, operatorId, isInsert);
     const insert = {
       insertBy: operatorId,
       inserted: new Date().getTime()
@@ -139,6 +148,7 @@ export class DataService {
 
 
   resData(res: IModel[] | IModel, errorCode: number): IData {
+    console.log('DataService.resData:', res, errorCode);
     return {
       res,
       errorCode
@@ -146,6 +156,7 @@ export class DataService {
   }
 
   rangeData(obj: IModel[], pageObj: IPage): IModel[] {
+    console.log('DataService.rangeData:', obj, pageObj);
     const start = pageObj.pageIndex * pageObj.pageSize;
     let end = start + pageObj.pageSize;
     if (pageObj.length < end) {
@@ -155,6 +166,7 @@ export class DataService {
   }
 
   makeToken(account: string): string {
+    console.log('DataService.rangeData:', account);
     return Md5.hashStr(`${account}`) as string;
     // return 'abcdefghijklmnopqrstuvwxyz';
   }

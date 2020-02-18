@@ -24,6 +24,10 @@ export const CmsRouting: Routes = [
   {
     path: 'order',
     loadChildren: 'src/app/cms/order/order.module#OrderModule'
-  }
+  },
+  {
+    path: 'home',
+    loadChildren: 'src/app/home/home.module#HomeModule'
+  },
 ];
 

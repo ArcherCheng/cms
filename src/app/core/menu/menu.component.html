@@ -4,7 +4,7 @@
     <div class="menu" *ngIf="!!menu">
       <div class="menu-items">
         <ng-container *ngFor="let m of menu">
-          <div class="menu-item" (click)="toggleMenuInfo(m)">
+          <div class="menu-item" (click)="toggleMenuInfo(m)" title="{{m|json}}">
             <div class="icon" [ngSwitch]="m.name">
               <mat-icon *ngSwitchCase="'index'" svgIcon="index"></mat-icon>
               <mat-icon *ngSwitchCase="'user'" svgIcon="user"></mat-icon>

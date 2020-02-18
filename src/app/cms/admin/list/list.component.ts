@@ -1,9 +1,9 @@
 import { Component, OnInit, AfterViewInit, OnDestroy } from '@angular/core';
-import { ITabBase, ITabMain } from 'src/app/model/tabs';
+import { ITabBase, ITabMain } from 'src/app/modules/tab/tabs';
 import { IAdmin, IPower, IHold } from 'src/app/model/data';
 import { Subscription, merge } from 'rxjs';
 import { FormControl, Validators } from '@angular/forms';
-import { ACCOUNTSTATUS, PAGESIZE } from 'src/app/config';
+import { ACCOUNTSTATUS, PAGESIZE, PAGESIZEOPTIONS } from 'src/app/config';
 import { MatDialog } from '@angular/material';
 import { ActivatedRoute } from '@angular/router';
 import { DataService } from 'src/app/service/data.service';
@@ -21,11 +21,12 @@ import { ClickToggle } from '../../click-toggle';
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.css']
 })
-export class ListComponent implements OnInit, AfterViewInit, OnDestroy  {
+export class AdminListComponent implements OnInit, AfterViewInit, OnDestroy  {
   ACCOUNTSTATUS = ACCOUNTSTATUS;
-  isLoadingToggle = true;
-  tab: ITabBase;
-  result: IAdmin[];
+  PAGESIZEOPTIONS = PAGESIZEOPTIONS;
+  isLoadingToggle = true;  // 讀取list的特效
+  tab: ITabBase;           // 此頁面元素資料
+  result: IAdmin[];        // 顯示在畫面的list array
   subscriptionClick: Subscription;
   childToggle = new ChildToggle('id', '', 0);
   clickToggle = new ClickToggle(0, '', ['change-status', 'change-name']);
@@ -137,6 +138,7 @@ export class ListComponent implements OnInit, AfterViewInit, OnDestroy  {
     this.setDatas();
   }
 
+  /*裝畫面資料 */
   setDatas(isDataInit = false) {
     this.isLoadingToggle = true;
     this.dataService.getData('admins', null, null, this.tab.pageObj).subscribe((data: IData) => {
@@ -152,6 +154,7 @@ export class ListComponent implements OnInit, AfterViewInit, OnDestroy  {
     });
   }
 
+  /*儲存storage */
   setLoadingDatas(isDataInit = false) {
     if (!isDataInit) {
       this.tabService.nextTabMain( {
@@ -161,7 +164,7 @@ export class ListComponent implements OnInit, AfterViewInit, OnDestroy  {
     }
   }
 
-  /*開Dialog */
+  /*新增Admin的相關 Dialog Function */
   openInsertDialog() {
     this.childToggle.reset();
     const dialogRef = this.dialog.open(DialogAdminInsertComponent, {
@@ -220,6 +223,7 @@ export class ListComponent implements OnInit, AfterViewInit, OnDestroy  {
     }
   }
 
+  /*打開 alert-dialog 提示視窗 */
   openStatusDialog(errorCode: number) {
     const dialogRef = this.dialog.open(DialogComponent, {
       width: '250px',
