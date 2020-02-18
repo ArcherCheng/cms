@@ -28,7 +28,7 @@ export class IndexComponent implements OnInit, AfterViewInit {
   ngAfterViewInit() {
     setInterval(() => {
       this.changeDetectorRef.markForCheck();
-    }, 1000);
+    }, 10000);
     this.initSize();
   }
 

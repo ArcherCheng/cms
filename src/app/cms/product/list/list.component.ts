@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { PRODUCTSTATUS, PAGESIZE } from 'src/app/config';
+import { PRODUCTSTATUS, PAGESIZE, PAGESIZEOPTIONS } from 'src/app/config';
 import { ITabBase, ITabMain } from 'src/app/modules/tab/tabs';
 import { IProduct, IType } from 'src/app/model/data';
 import { MatDialog } from '@angular/material';
@@ -20,6 +20,7 @@ import { DialogComponent } from 'src/app/shared/dialog/dialog.component';
 })
 export class ProductListComponent implements OnInit {
   PRODUCTSTATUS = PRODUCTSTATUS;
+  PAGESIZEOPTIONS =  PAGESIZEOPTIONS;
   isLoadingToggle = true;
   tab: ITabBase;
   result: IProduct[] = [];

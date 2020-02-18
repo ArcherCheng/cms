@@ -3,6 +3,11 @@ import { LayoutModule } from '@angular/cdk/layout';
 import { CdkTableModule } from '@angular/cdk/table';
 import {
   MatDialogModule,
+  MatDialogRef,
+  MAT_DIALOG_DATA
+} from '@angular/material/dialog';
+
+import {
   MatPaginatorModule,
   MatDatepickerModule,
   MatCardModule,
@@ -16,9 +21,7 @@ import {
   MatTableModule,
   MatCheckboxModule,
   MatRadioModule,
-  MatPaginatorIntl,
-  MatDialogRef,
-  MAT_DIALOG_DATA,
+  MatPaginatorIntl
 } from '@angular/material';
 import { CustomMatPaginatorIntl } from './CustomMatPaginatorIntl';
 

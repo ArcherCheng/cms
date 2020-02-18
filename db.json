@@ -650,6 +650,15 @@
       "updateBy": 1,
       "updated": 1581988318516,
       "id": 10
+    },
+    {
+      "customerId": 3,
+      "status": 1,
+      "insertBy": 1,
+      "inserted": 1581996134102,
+      "updateBy": 1,
+      "updated": 1581996134102,
+      "id": 11
     }
   ],
   "cars": [
@@ -784,6 +793,18 @@
       "productId": 3,
       "amount": 10,
       "id": 22
+    },
+    {
+      "orderId": 11,
+      "productId": 5,
+      "amount": 50,
+      "id": 23
+    },
+    {
+      "orderId": 11,
+      "productId": 8,
+      "amount": 20,
+      "id": 24
     }
   ]
 }

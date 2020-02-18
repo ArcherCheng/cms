@@ -9,10 +9,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({
   declarations: [DialogUserPasswordComponent, UserIndexComponent],
-  imports: [
-    SharedModule,
-    UserRoutingModule
-  ],
+  imports: [SharedModule, UserRoutingModule],
   exports: [UserIndexComponent],
   entryComponents: [DialogUserPasswordComponent]
 })

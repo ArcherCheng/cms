@@ -4,9 +4,9 @@ import { StorageService } from '../service/storage.service';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable(
+  {  providedIn: 'root'  }
+)
 export class CoreService {
   private hamburgerSubject = new BehaviorSubject<string>('');
 

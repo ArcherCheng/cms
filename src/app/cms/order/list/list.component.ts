@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ORDERSTATUS, PAGESIZE } from 'src/app/config';
+import { ORDERSTATUS, PAGESIZE, PAGESIZEOPTIONS } from 'src/app/config';
 import { ITabBase, ITabMain } from 'src/app/modules/tab/tabs';
 import { ChildToggle } from '../../child-toggle';
 import { IOrder, IOrderCar } from 'src/app/model/data';
@@ -22,6 +22,7 @@ const moment = (_moment as any).default ? (_moment as any).default : _moment;
 })
 export class OrderListComponent implements OnInit {
   ORDERSTATUS = ORDERSTATUS;
+  PAGESIZEOPTIONS = PAGESIZEOPTIONS;
   isLoadingToggle = true;
   tab: ITabBase;
   childToggle = new ChildToggle('id', '', 0);

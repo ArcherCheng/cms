@@ -11,6 +11,9 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
 import { SpinnerComponent } from './spinner/spinner.component';
+import { AppService } from './app.service';
+import { SpinnerService } from './spinner/spinner.service';
+import { CoreGuard } from './core/core.guard';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -31,12 +34,12 @@ export function createTranslateLoader(http: HttpClient) {
           useFactory: createTranslateLoader,
           deps: [HttpClient]
       }
-  }),
-  DialogModule,
-  CoreModule,
-  AppRoutingModule,
-],
-  providers: [],
-  bootstrap: [AppComponent]
+    }),
+    DialogModule,
+    CoreModule,
+    AppRoutingModule,
+    ],
+    // providers: [AppService, SpinnerService, CoreGuard],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }

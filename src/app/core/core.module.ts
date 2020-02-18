@@ -9,7 +9,7 @@ import { CoreService } from './core.service';
 @NgModule({
   declarations: [CoreComponent, MenuComponent],
   imports: [ SharedModule, TabModule, CoreRoutingModule ],
-  exports: [CoreComponent, MenuComponent ],
+  exports: [CoreComponent ],
   providers: [CoreService]
 })
 export class CoreModule {
